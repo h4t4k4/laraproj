@@ -1,10 +1,10 @@
-@extends('layouts.app');
+@extends('layouts.app')
 
 @section('title')
     Home
 @endsection
 
-@section('content');
+@section('content')
     <div class="container">
         <div class="jumbotron text-center">
             <h1>laravel e-commerce from A to Z</h1>
