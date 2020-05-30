@@ -13,9 +13,10 @@
                 </div>
             </div>
             <hr>
+            @include('layouts.alert')
             <div class="row">
                 <div class="col-md-6 offset-md-3">
-                        {!!Form::open(['action'=>'ProductController@saveproduct','methode'=>'POST','enctype'=>'multipart/form-data'])!!}
+                        {!!Form::open(['action'=>'ProductController@saveproduct','method'=>'POST','files'=>true,'enctype'=>'multipart/form-data'])!!}
                             <div class="form-group">
                                 {{Form::label('','Product Name')}}
                                 {{Form::text('product_name','',['class'=>'form-control','placeholder'=>'Enter Product Name'])}}
@@ -44,21 +45,28 @@
                 <th>Actions</th>
             </tr>
             </thead>
+            <?php
+                $allProducts=DB::table('products')
+                                ->get();
+
+            ?>
             <tbody>
+            @foreach($allProducts as $products)
             <tr>
-                <td>John</td>
-                <td>Doe</td>
-                <td>john@example.com</td>
+                <td><img src="storage/product_images/{{$products->product_image}}" alt="" style="width:50px;height:50px;"></td>
+                <td>{{$products->product_name}}</td>
+                <td>$ {{$products->price}}</td>
                 <td>
-                    <a href="#" class="btn btn-info ">
+                    <a href="/editproduct/{{$products->id}}" class="btn btn-info ">
                         <span class="glyphicon glyphicon-edit"></span>Edit
                     </a>
 
-                    <a href="#" class="btn btn-danger ">
+                    <a href="/deleteproduct/{{$products->id}}" class="btn btn-danger ">
                         <span class="glyphicon glyphicon-trash"></span>Delete
                     </a>
                 </td>
             </tr>
+            @endforeach
             </tbody>
         </table>
         </div>

@@ -17,5 +17,8 @@ Route::get('/', 'PagesController@home');
 Route::get('/about','PagesController@about');
 Route::get('/services','PagesController@services');
 Route::get('/addproduct','ProductController@addproduct');
-Route::get('/editproduct','ProductController@editproduct');
+Route::get('/editproduct/{id}','ProductController@editproduct');
+Route::post('/saveproduct','ProductController@saveproduct');
+Route::post('/updateproduct','ProductController@updateproduct');
+Route::get('/deleteproduct/{id}','ProductController@deleteproduct');
 

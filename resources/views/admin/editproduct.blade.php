@@ -13,25 +13,26 @@
                 </div>
             </div>
             <hr>
+            @include('layouts.alert')
             <div class="row">
-
                 <div class="col-md-6 offset-md-3">
-                        <form action="">
+                        {!! Form::open(['action'=>'ProductController@updateproduct','method'=>'POST','enctype'=>'multipart/form-data']) !!}
+                        {{Form::hidden('product_id',$selectProduct->id)}}
                             <div class="form-group">
-                                <label>Product Name </label>
-                                <input type="email" class="form-control" id="email" placeholder="Enter Product Name" name="product_name">
+                                {{Form::label('product_name','Product Name')}}
+                                {{Form::text('product_name',$selectProduct->product_name,['class'=>'form-control','placeholder'=>'Enter Product Name'])}}
                             </div>
                             <div class="form-group">
-                                <label>Price </label>
-                                <input type="number" class="form-control"  placeholder="Enter price" name="product_price">
+                                {{Form::label('price','Product Price')}}
+                                {{Form::number('price',$selectProduct->price,['class'=>'form-control','placeholder'=>'Enter Product Price'])}}
                             </div>
                             <p>Product image </p>
                             <div class="custom-file mb-3">
-                                <input type="file" class="custom-file-input" id="customFile" name="product_image">
-                                <label class="custom-file-label" for="customFile">Choose file</label>
+                                {{Form::label('product_image','Product Image',['class'=>'custom-file-label','for'=>'customFile'])}}
+                                {{Form::file('product_image',['class'=>'custom-file-input','id'=>'customFile'])}}
                             </div>
-                            <button type="submit" class="btn btn-primary">Update product</button>
-                        </form>
+                                {{Form::submit('Update Product',['class'=>'btn btn-primary'])}}
+                        {!! Form::close() !!}
                 </div>
             </div>
         </div>
